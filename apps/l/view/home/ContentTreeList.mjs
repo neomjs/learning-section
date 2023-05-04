@@ -32,7 +32,7 @@ class ContentTreeList extends TreeList {
             me.store.data = data.json.data;
             me.createItems(null, me.getListItemsRoot(), 0);
             me.update();
-        });
+        })
     }
 }
 
