@@ -18,8 +18,25 @@ class MainContainerController extends Component {
      */
     onContentListLeafClick(record) {
         let contentContainer = this.getReference('content-container');
+        if (record.path) {
 
-        console.log('onContentListLeafClick', {contentContainer, record});
+            import(`../content/${record.path}`).then(module => {
+                console.log(module);
+                contentContainer.add({
+                    module: module.default,
+                    id: record.path,
+                    tabButtonConfig: {
+                        iconCls: 'fa fa-user',
+                        text: record.name
+                    }
+                });
+                // contentContainer.layout.activeIndex = 0;
+            })
+        }
+        console.log('onContentListLeafClick', {
+            contentContainer,
+            record
+        });
     }
 }
 

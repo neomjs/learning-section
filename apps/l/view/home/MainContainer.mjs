@@ -1,7 +1,8 @@
-import Container               from '../../../../node_modules/neo.mjs/src/container/Base.mjs';
-import ContentTreeList         from './ContentTreeList.mjs';
+import Container from '../../../../node_modules/neo.mjs/src/container/Base.mjs';
+import TabContainer from '../../../../node_modules/neo.mjs/src/tab/Container.mjs';
+import ContentTreeList from './ContentTreeList.mjs';
 import MainContainerController from './MainContainerController.mjs';
-import Splitter                from '../../../../node_modules/neo.mjs/src/component/Splitter.mjs';
+import Splitter from '../../../../node_modules/neo.mjs/src/component/Splitter.mjs';
 
 /**
  * @class L.view.home.MainContainer
@@ -24,24 +25,29 @@ class MainContainer extends Container {
         items: [{
             module: Container,
             layout: 'fit',
-            width : 300,
+            width: 300,
 
             items: [{
-                module   : ContentTreeList,
-                listeners: {leafItemClick: 'onContentListLeafClick'}
+                module: ContentTreeList,
+                listeners: {
+                    leafItemClick: 'onContentListLeafClick'
+                }
             }]
         }, {
-            module      : Splitter,
+            module: Splitter,
             resizeTarget: 'previous'
         }, {
-            module   : Container,
-            layout   : {ntype: 'card', activeIndex: null},
+            module: TabContainer,
+            activeIndex: null,
             reference: 'content-container'
         }],
         /**
          * @member {Object} layout={ntype:'hbox',align:'stretch'}
          */
-        layout: {ntype: 'hbox', align: 'stretch'}
+        layout: {
+            ntype: 'hbox',
+            align: 'stretch'
+        }
     }
 }
 
